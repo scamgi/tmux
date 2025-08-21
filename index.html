@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tmux Cheatsheet</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        code {
+            background-color: #f6f8fa;
+            border-radius: 3px;
+            padding: 0.2em 0.4em;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dfe2e5;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f6f8fa;
+            font-weight: 600;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .intro {
+            background-color: #f6f8fa;
+            border: 1px solid #dfe2e5;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>tmux Cheatsheet</h1>
+
+        <div class="intro">
+            <p><strong>A comprehensive quick-reference for the popular terminal multiplexer, tmux, designed to enhance your command-line productivity.</strong></p>
+            <p>For anyone who spends a significant amount of time in the terminal, managing multiple tasks, sessions, and windows can quickly become a cumbersome process. This is where tmux, a powerful terminal multiplexer, comes into play. It allows you to create and control multiple terminal sessions from a single screen, detach from them while processes continue to run in the background, and reattach later from any terminal. This cheatsheet provides a concise overview of the most essential tmux commands and key bindings to get you up and running.</p>
+        </div>
+
+        <h2>The Prefix</h2>
+        <p>All tmux commands are initiated with a prefix key, which by default is <code>Ctrl+b</code>. After pressing the prefix, you then press the desired command key.</p>
+
+        <h2>Session Management</h2>
+        <p>A tmux session is an independent workspace that contains its own set of windows and panes.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>tmux new</code> or <code>tmux</code></td>
+                    <td>Start a new session.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux new -s [session_name]</code></td>
+                    <td>Start a new session with a specific name.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux ls</code></td>
+                    <td>List all active tmux sessions.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux a</code> or <code>tmux attach</code></td>
+                    <td>Attach to the last used session.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux a -t [session_name]</code></td>
+                    <td>Attach to a session with a specific name.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b d</code></td>
+                    <td>Detach from the current session.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b $</code></td>
+                    <td>Rename the current session.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux kill-ses -t [session_name]</code></td>
+                    <td>Kill a specific session.</td>
+                </tr>
+                <tr>
+                    <td><code>tmux kill-server</code></td>
+                    <td>Kill the tmux server and all sessions.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Window Management</h2>
+        <p>Within a session, you can create multiple windows, which are akin to tabs in a web browser.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keystroke</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Ctrl+b c</code></td>
+                    <td>Create a new window.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b ,</code></td>
+                    <td>Rename the current window.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b w</code></td>
+                    <td>List all windows in the current session.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b p</code></td>
+                    <td>Switch to the previous window.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b n</code></td>
+                    <td>Switch to the next window.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b [0-9]</code></td>
+                    <td>Switch to a specific window by its number.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b &</code></td>
+                    <td>Kill the current window.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Pane Management</h2>
+        <p>Panes allow you to split a single window into multiple terminal views, enabling you to see and interact with several shells at once.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keystroke</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Ctrl+b %</code></td>
+                    <td>Split the current pane vertically.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b "</code></td>
+                    <td>Split the current pane horizontally.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b [arrow key]</code></td>
+                    <td>Navigate between panes.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b o</code></td>
+                    <td>Cycle through the panes in the current window.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b ;</code></td>
+                    <td>Toggle between the current and the last active pane.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b z</code></td>
+                    <td>Toggle zoom for the current pane.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b x</code></td>
+                    <td>Close the current pane.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b {</code></td>
+                    <td>Swap the current pane with the previous one.</td>
+                </tr>
+                <tr>
+                    <td><code>Ctrl+b }</code></td>
+                    <td>Swap the current pane with the next one.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Customization</h2>
+        <p>You can personalize your tmux experience by creating and editing a configuration file located at <code>~/.tmux.conf</code>. After making changes to this file, you can apply them by either restarting tmux or by sourcing the file with <code>Ctrl+b :</code> followed by <code>source-file ~/.tmux.conf</code>.</p>
+
+        <h3>Common Customizations:</h3>
+        <ul>
+            <li>
+                <strong>Change the prefix key:</strong> Many users find <code>Ctrl+a</code> to be a more convenient prefix.
+                <pre><code>unbind C-b
+set-option -g prefix C-a
+bind-key C-a send-prefix</code></pre>
+            </li>
+            <li>
+                <strong>More intuitive split commands:</strong> Remap the pane splitting keys to be more memorable.
+                <pre><code>bind | split-window -h
+bind - split-window -v</code></pre>
+            </li>
+            <li>
+                <strong>Enable mouse mode:</strong> This allows you to use your mouse to switch between panes and windows.
+                <pre><code>set -g mouse on</code></pre>
+            </li>
+            <li>
+                <strong>Start window and pane numbering at 1:</strong> By default, numbering starts at 0.
+                <pre><code>set -g base-index 1
+setw -g pane-base-index 1</code></pre>
+            </li>
+            <li>
+                <strong>Customize the status bar:</strong> Change the colors and information displayed in the status bar.
+                <pre><code>set -g status-bg black
+set -g status-fg white
+set -g status-left "#[fg=green]#S #[fg=yellow]#I #[fg=cyan]#P"</code></pre>
+            </li>
+        </ul>
+
+        <p>This cheatsheet covers the fundamental commands to get you started with tmux. With its extensive customization options, tmux can be tailored to fit a wide variety of workflows, making it an indispensable tool for any power user of the command line.</p>
+    </div>
+
+</body>
+</html>
